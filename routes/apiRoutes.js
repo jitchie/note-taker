@@ -1,20 +1,24 @@
-const jsonStorage = require('../Develop/db');
-
-module.exports = (app) => {
-
-app.get('/api/notes', (req, res) => res.json(`${__dirname}`,''));
+const jsonStorage = require('../Develop/db/db.json');
 
 
+module.exports = (app) =>{
 
-
-
-
-
-
-
-
-
+    app.get('/api/notes',(req,res)=> res.join());
 
 
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
