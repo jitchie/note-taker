@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+var uniqid = require('uniqid');
 
 const app = express();
 
@@ -9,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public')); //anything in my public file, static files will be displayed
 
-// require('./routes/apiRoutes')(app);
+require('./routes/apiRoutes')(app);
 require('./routes/htmlRoutes')(app);
 
 app.listen(PORT, () => {
