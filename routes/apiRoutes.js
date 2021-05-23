@@ -1,10 +1,12 @@
-const jsonStorage = require('../Develop/db/db.json');
+const jsonStorage = require('db/db.json');
 var uniqid = require('uniqid');
+const fs = require('fs');
+const path = require('path');
 
 
 module.exports = (app) =>{
 
-    app.get('/api/notes',(req,res)=> res.json(notes));
+    app.get('/api/notes',(req,res)=> res.json(jsonStorage));
 
     app.post('/api/notes', (req, res) => {
         const newEntry = req.body;
@@ -12,8 +14,9 @@ module.exports = (app) =>{
         jsonStorage.forEach((note) => {
             note.id = uniqid();
         });
-        res.json(saveNote);// confused here                        and below here 
-        fs.writeFile('../Develop/public/db/db.json', JSON.stringify(saveNote, null, 4), (err) => {
+        res.json(jsonStorage);
+        
+        fs.writeFile('.db/db.json', JSON.stringify(savjsonStorage), (err) => {
             if(err) {
                 console.log(err);
             };
