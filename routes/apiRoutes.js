@@ -1,4 +1,4 @@
-const jsonStorage = require('db/db.json');
+const jsonStorage = require('../db/db.json');
 var uniqid = require('uniqid');
 const fs = require('fs');
 const path = require('path');
@@ -16,7 +16,7 @@ module.exports = (app) =>{
         });
         res.json(jsonStorage);
         
-        fs.writeFile('.db/db.json', JSON.stringify(savjsonStorage), (err) => {
+        fs.writeFile('..db/db.json', JSON.stringify(jsonStorage), (err) => {
             if(err) {
                 console.log(err);
             };
