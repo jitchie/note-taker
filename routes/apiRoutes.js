@@ -16,7 +16,7 @@ module.exports = (app) =>{
         });
         res.json(jsonStorage);
         
-        fs.writeFile('..db/db.json', JSON.stringify(jsonStorage), (err) => {
+        fs.writeFile('../db/db.json', JSON.stringify(jsonStorage, null, 4), (err) => {
             if(err) {
                 console.log(err);
             };
