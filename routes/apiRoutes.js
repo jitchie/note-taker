@@ -16,12 +16,31 @@ module.exports = (app) =>{
         });
         res.json(jsonStorage);
         
-        fs.writeFile('../db/db.json', JSON.stringify(jsonStorage, null, 4), (err) => {
+        fs.writeFile('db/db.json', JSON.stringify(jsonStorage, null, 4), (err) => {
             if(err) {
                 console.log(err);
             };
         });
     });
+
+    app.delete('/api/notes/:id', (req, res) => {
+        const { id } = req.params;
+        jsonStorage.forEach(note => {
+            if (note.id === id) {
+                var newArr = jsonStorage.filter(notes => {
+                    return notes.id !== id;
+                })
+                newArr = jsonStorage ;
+                fs.writeFile('db/db.json', JSON.stringify(jsonStorage, null, 2), (err) => {
+                    if(err) {
+                        console.log(err)
+                    }
+                })
+                // console.log(changeArr)
+                res.send(id);
+            }
+        })
+    })
 
 
 };
