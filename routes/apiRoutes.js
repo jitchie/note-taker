@@ -27,19 +27,19 @@ module.exports = (app) =>{
 
     app.delete('api/notes/:id',(req,res)=>{
         const { id } = req.params;
-        var newArr = jsonStorage.filter(notes => {
-            fs.writeFile('db/db.json', JSON.stringify(jsonStorage, null, 4), (err) => {
+        var newArr = jsonStorage.filter(notes => notes.id !=id);
+        jsonStorage = newArr;
+            fs.writeFile('db/db.json', JSON.stringify(jsonStorage), (err) => {
                 if(err) {
                     console.log(err)
-                } res.send(id);
-            return notes.id !== id;
-            
+                }
             })
-        });
+res,json(jsonStorage)
     })
-
-
 };
+
+
+
 
 
 
