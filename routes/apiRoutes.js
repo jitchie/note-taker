@@ -23,19 +23,23 @@ module.exports = (app) =>{
         });
     });
 
-    
-
-    app.delete('api/notes/:id',(req,res)=>{
-        const { id } = req.params;
+    app.delete('/api/notes/:id',(req,res)=>{
+        const id = req.params.id;
+        console.log('id string',id);
+        console.log("string",jsonStorage);
         var newArr = jsonStorage.filter(notes => notes.id !=id);
+        console.log("new string",newArr);
         jsonStorage = newArr;
             fs.writeFile('db/db.json', JSON.stringify(jsonStorage), (err) => {
                 if(err) {
                     console.log(err)
                 }
             })
-res,json(jsonStorage)
-    })
+            res.json(jsonStorage);
+})
+
+
+
 };
 
 
