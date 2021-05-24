@@ -1,4 +1,4 @@
-const jsonStorage = require('../db/db.json');
+var jsonStorage = require('../db/db.json');
 var uniqid = require('uniqid');
 const fs = require('fs');
 const path = require('path');
@@ -23,23 +23,19 @@ module.exports = (app) =>{
         });
     });
 
-    app.delete('/api/notes/:id', (req, res) => {
+    
+
+    app.delete('api/notes/:id',(req,res)=>{
         const { id } = req.params;
-        jsonStorage.forEach(note => {
-            if (note.id === id) {
-                var newArr = jsonStorage.filter(notes => {
-                    return notes.id !== id;
-                })
-                newArr = jsonStorage ;
-                fs.writeFile('db/db.json', JSON.stringify(jsonStorage, null, 2), (err) => {
-                    if(err) {
-                        console.log(err)
-                    }
-                })
-                // console.log(changeArr)
-                res.send(id);
-            }
-        })
+        var newArr = jsonStorage.filter(notes => {
+            fs.writeFile('db/db.json', JSON.stringify(jsonStorage, null, 4), (err) => {
+                if(err) {
+                    console.log(err)
+                } res.send(id);
+            return notes.id !== id;
+            
+            })
+        });
     })
 
 
